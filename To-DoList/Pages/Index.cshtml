@@ -8,3 +8,98 @@
     <h1 class="display-4">To-Do List</h1>
 </div>
 
+<input type="text" id="taskInput" placeholder="Enter a new task" />
+<button id="addTaskBtn">Add Task</button>   
+
+<ul id="taskList">
+</ul>
+
+
+<script>
+    document.getElementById("addTaskBtn").addEventListener("click", function () {
+        const taskInput = document.getElementById("taskInput");
+        const taskText = taskInput.value;
+
+
+        // Check if taskText is not empty
+        if (taskText) {
+
+            // Create a new list item (li) element
+            const li = document.createElement("li");
+            li.textContent = taskText;
+
+            //Create delete button
+            const deleteBtn = document.createElement("button");
+            deleteBtn.textContent = "Delete";
+            deleteBtn.style.marginLeft = "10px";
+
+            // Append delete button to the list item
+            li.appendChild(deleteBtn);
+
+            //Add event listener to delete the task when button is clicked
+            deleteBtn.addEventListener("click", function () {
+                li.remove(); //removes the task
+            });
+
+            //Edit button
+            const editBtn = document.createElement("button");
+            editBtn.textContent = "Edit me";
+            editBtn.style.marginLeft = "20px";
+
+            //Append button to li list
+            li.appendChild(editBtn);
+
+            // Add event listener to edit the task
+            editBtn.addEventListener("click", function () {
+                if (editBtn.textContent === "Edit me")
+                {
+                    const input = document.createElement("input");
+                    input.type = "text";
+                    input.value = li.firstChild.textContent;
+
+                    li.firstChild.replaceWith(input);
+
+                    editBtn.textContent = "Save";
+
+                } else if (editBtn.textContent === "Save") {
+                    const input = li.firstChild;
+                    const newTaskText = input.value;
+
+                    const updatedTextNode = document.createTextNode(newTaskText);
+
+                    input.replaceWith(updatedTextNode);
+
+                    editBtn.textContent = "Edit me";
+                 }
+            });
+
+            //Completed button
+            const completeBtn = document.createElement("button"); // Define button inline
+            completeBtn.textContent = "Complete";
+            completeBtn.style.marginLeft = "20px";
+
+            li.appendChild(completeBtn);
+
+            // Add event listener to complete the task
+            completeBtn.addEventListener("click", completeTask);
+
+            function completeTask(event) {
+                const li = event.target.parentElement; // Get the list item (li)
+                li.style.textDecoration = "line-through"; // Add strikethrough style
+                event.target.disabled = true; // Optionally disable the button after completion
+                event.target.textContent = "Completed"; // Change button text
+
+            }
+
+            // Append the new list item to the task list (ul)
+            document.getElementById("taskList").appendChild(li);
+
+            // Clear the input field for the next task
+            taskInput.value = ""; //Clear input
+
+
+        }
+    });
+
+</script>
+

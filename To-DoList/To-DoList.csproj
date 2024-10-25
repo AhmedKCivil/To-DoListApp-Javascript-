@@ -7,4 +7,12 @@
     <RootNamespace>To_DoList</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\js\MoviesList.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Pages\movies\" />
+  </ItemGroup>
+
 </Project>
