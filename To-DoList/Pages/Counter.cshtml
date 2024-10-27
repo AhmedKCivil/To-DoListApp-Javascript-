@@ -3,11 +3,18 @@
 @{
 }
 <div class="text-center">
-    <h1 class="display-4">Countdown Timer</h1>
-    <input type="number" id="secondsInput" placeholder="Enter seconds" />
-    <button id="startBtn">Start Countdown</button>
-    <button id="resetBtn">Reset</button>
-    <div id="timerDisplay">Time Remaining: 0 seconds</div>
+    <h1 class="display-4">Write your letter</h1>
+    <form id="letterForm">
+
+        <input type="text" id="letterInput" placeholder="Write your letter" />
+        <button id="sendBtn" type="button">Send</button>
+
+    </form>
+    
+   <div id="errorMessage" style="color: red; display: none;">Please enter your letter.</div>
+    <div id="letterDisplay"></div>
+
 </div>
 
-<script src="~/js/Counter.js"></script>
+<script src="~/js/DOM-Manipulation.js"></script>
+
